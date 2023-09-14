@@ -1,14 +1,10 @@
 <?php
 
 define("DEV_MODE", (bool)"%DEV_MODE?0%");
-define("CONF_GCLOUD_INDENTY_FILE", "%CONF_GCLOUD_INDENTY_FILE?/opt/leuffende-8350153ed12a.json%");
-define("CONF_GCLOUD_BUCKET", "%CONF_GCLOUD_BUCKET?micx-mediastore%");
 
-define("CONF_SUBSCRIPTION_ENDPOINT", "%CONF_SUBSCRIPTION_ENDPOINT?/opt/mock/subscription%");
-define("CONF_SUBSCRIPTION_CLIENT_ID", "%CONF_SUBSCRIPTION_CLIENT_ID?micx-mediastore%");
-define("CONF_SUBSCRIPTION_CLIENT_SECRET", "%CONF_SUBSCRIPTION_CLIENT_SECRET?%");
 
-define("CONF_URL_PREFIX", "%CONF_URL_PREFIX?https://cdn.leuffen.de/%");
+define("CONF_PATH", "%CONF_PATH?/opt/mock%");
+define("CONF_KEYSTORE_FILE", "%CONF_PATH?/opt/.keystore.yml%");
 
 const CONF_API_MOUNT = "/v1/api";
 

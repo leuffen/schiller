@@ -3,7 +3,8 @@
 /.phpunit.result.cache
 report
 composer.lock
-
+.keystore.yml
+/.keystore.yml
 
 /node_modules
 /workspaces

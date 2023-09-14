@@ -8,6 +8,7 @@ use App\Business\processors\SvgStorageProcessor;
 use App\Business\StorageFacet;
 use App\Config\MediaStoreConf;
 use App\Config\MediaStoreSubscriptionInfo;
+use App\Type\T_Config;
 use Brace\Command\CommandModule;
 use Brace\Core\AppLoader;
 use Brace\Core\BraceApp;
@@ -15,6 +16,9 @@ use Brace\Dbg\BraceDbg;
 use Brace\Mod\Request\Zend\BraceRequestLaminasModule;
 use Brace\Router\RouterModule;
 use Brace\Router\Type\RouteParams;
+use Lack\Frontmatter\Repo\FrontmatterRepo;
+use Lack\OpenAi\LackOpenAiClient;
+use Lack\OpenAi\Logger\NullLogger;
 use Lack\Subscription\Brace\SubscriptionClientModule;
 use Lack\Subscription\Type\T_Subscription;
 use Phore\Di\Container\Producer\DiService;
@@ -37,6 +41,30 @@ AppLoader::extend(function () {
     $app->addModule(new CommandModule());
 
 
+    $app->define("config", new DiService(function () {
+        return phore_hydrate_file(CONF_PATH . "/.schiller.yml", T_Config::class);
+    }));
+
+    $app->define("frontmatterRepo", new DiService(function (T_Config $config) {
+        return new FrontmatterRepo(CONF_PATH . "/" . $config->doc_root);
+    }));
+
+    $app->define("templateRepo", new DiService(function (T_Config $config) {
+        return new FrontmatterRepo(CONF_PATH . "/" . $config->template_dir);
+    }));
+
+
+    $app->define("openai", new DiService(function (T_Config $config) {
+        $keystore = phore_file(CONF_KEYSTORE_FILE)->assertFile()->get_yaml();
+        return new LackOpenAiClient($keystore["open_ai"], new NullLogger());
+    }));
+
+    $app->define("context", new DiService(function (T_Config $config) {
+        $contextCombined = "";
+        $contextCombined .= phore_file(CONF_PATH . "/" . $config->context_file)->assertFile()->get_contents();
+
+        return $contextCombined;
+    }));
 
 
     // Define the app so it is also available in dependency-injection

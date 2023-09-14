@@ -1,48 +1,119 @@
 import {customElement, ka_sleep, KaCustomElement, KaHtmlElement, template} from "@kasimirjs/embed";
-import {href, link, route, router} from "@kasimirjs/app";
+import {api_call, href, route, router} from "@kasimirjs/app";
 import {currentRoute} from "@kasimirjs/app";
 import {CurRoute} from "@kasimirjs/app";
-import {ImageDetailsModal} from "../modals/image-details-modal";
+import {API} from "../_routes";
 
 // language=html
 let html = `
         
-<div class="container-xxl">
+<div class="container-fluid">
     <div class="row">
-        <h2>Bitte Scope wählen:</h2>
-        <ul>
-            <li ka.for="let scope of index.scopes"><a ka.attr.href="$fn.getLink(scope)">[[ scope ]]</a></li>
-        </ul>
+        <h2>Pages:</h2>
+        <div ka.for="let page of pages" class="border-bottom p-3">
+            <div class="row">
+                <div class="col">[[ page.pid ]]</div>
+                <div class="col">
+                    <label>Pid</label>
+                    <input class="w-100" type="text" ka.bind="page.pid_new">
+                </div>
+                 <div class="col">
+                    <label>Permalink</label>
+                    <input class="w-100" type="text" ka.bind="page.permalink">
+                </div>
+                <div class="col">
+                    <label>Title</label>
+                    <input class="w-100" type="text" ka.bind="page.title">
+                </div>
+                <div class="col">
+                    <label>Order</label>
+                    <input class="w-100" type="number" ka.bind="page.order">
+                </div>
+                <div class="col">
+                    <label>Description</label>
+                    <input class="w-100" type="text" ka.bind="page.description">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <label>AI Instructions:</label>
+                    <textarea ka.bind="page._schiller_instructions" class="w-100"></textarea>
+                </div>
+                <div class="col">
+                    <label>Copy from</label>
+                    <select ka.ref="'copyFrom'+page.pid" ka.options="templates"></select>
+                    <button ka.on.click="$fn.copyContent(page.pid, $scope.$ref['copyFrom'+page.pid].value)">Copy</button>
+                </div>
+                <div class="col">
+                    <button ka.on.click="$fn.generate(page.pid, $this)">Generate</button>
+                </div>
+            </div>
+        </div>
+            
     </div>
     
+    <div class="row bg-light p-4">
+        <div class="col">
+            
+            <button ka.on.click="$fn.save()">Save</button>
+        </div>
+         <div class="col">
+            <label>Create</label>
+             <select ka.ref="'tplPid'" ka.options="templates" ka.ref="'tplPid'"></select>
+            <input class="w-100" placeholder="Alias PID (optional)" type="text" ka.ref="'newPid'">
+            <button ka.on.click="$fn.create($scope.$ref.tplPid.value, $scope.$ref.newPid.value)">Create</button>
+        </div>
+    </div>
 </div>
 
 
 `
 
 @customElement("index-page")
-@route("gallery", "/static/{subscription_id}")
+@route("gallery", "/static")
 @template(html)
 class IndexPage extends KaCustomElement {
 
     constructor(public route : CurRoute) {
         super();
         let scope = this.init({
+            pages: [],
+            templates: [],
             $fn: {
-                getLink: (scope) => href("gallery", {scope_id: scope})
+                async create(templatePid: string, aliasPid: string = null) {
+                    await api_call(API["api.pid.create_POST"], {templatePid, aliasPid})
+                    await scope.$fn.update();
+                },
+                async save() {
+                    console.log(scope.pages);
+                    await api_call(API["api.pid.post_POST"], {}, scope.pages)
+                    await scope.$fn.update();
+                },
+                async copyContent(pid: string, templatePid: string) {
+                    await api_call(API["api.pid.copyContent_POST"], {pid, templatePid})
+                    await scope.$fn.update();
+                },
+                async generate(pid: string, element: HTMLElement) {
+                    element.innerHTML = "generating...";
+                    await api_call(API["api.pid.generate_POST"], {pid});
+                    element.innerHTML = "DONE";
+                },
+                async update() : void {
+                    scope.pages = [];
+
+                    scope.pages = (await api_call(API["api.list_GET"])).pages;
+                }
             }
         })
     }
 
     async connectedCallback(): Promise<void> {
+        this.scope.templates = (await api_call(API["templates.list_GET"])).templates;
 
-
-        let subId = currentRoute.route_params["subscription_id"];
-
-
-        this.scope.index = await (await fetch("/v1/api/" + subId + "/info")).json();
         super.connectedCallback();
-        this.scope.render();
+
+        await this.scope.$fn.update();
+
 
     }
 
