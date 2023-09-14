@@ -1,0 +1,22 @@
+version: 1
+from: "ghcr.io/nfra-project/kickstart-flavor-php:unstable"
+ports: "80:80"
+
+packages: [inotify-tools]
+
+config_file:
+  template: "config.php.dist"
+  target: "config.php"
+
+command:
+  build:
+    - "composer update"
+    - "npm update"
+
+
+  run:
+  dev:
+
+  test:
+
+

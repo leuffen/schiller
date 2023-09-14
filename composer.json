@@ -1,0 +1,53 @@
+{
+  "name": "leuffen/schiller",
+  "description": "",
+  "license": "MIT",
+  "authors": [
+    { "name": "Matthias Leuffen", "email": "m@tth.es" }
+  ],
+  "repositories": [
+  ],
+  "require": {
+    "php": ">=8.1",
+    "ext-json": "*",
+    "brace/core": "*",
+    "brace/dbg": "*",
+    "brace/mod-session": "*",
+    "brace/mod-spaserve": "*",
+    "brace/mod-cors": "*",
+    "brace/mod-body": "*",
+    "brace/mod-router": "*",
+    "brace/mod-request-laminas": "*",
+    "brace/mod-auth-basic": "*",
+    "phore/hydrator": "*",
+    "lack/freda": "*",
+    "lack/openai": "*",
+    "lack/frontmatter": "*",
+
+
+    "brace/command": "dev-main"
+  },
+  "require-dev": {
+    "phore/tester": "*"
+  },
+  "suggest": {
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    },
+    "files": [
+      "config.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": { "Tests\\": "tests/" }
+  },
+  "minimum-stability": "dev",
+  "config": {
+    "preferred-install": "source",
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
+}

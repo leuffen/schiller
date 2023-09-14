@@ -1,0 +1,76 @@
+<script>
+
+</script>
+
+<nav class="navbar fixed-top navbar-dark bg-dark shadow" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-brand" style="width: 200px">
+            <a href="javascript:ka_goto('index')" style="">
+                <img src="_vendor/a-f.png" height="48" class="float-start me-3">
+            </a>
+            <div>
+                <p class="m-0">a&f Component</p>
+                <p class="fs-6 text-white m-0  text-nowrap" style="overflow:hidden;text-overflow: ellipsis">
+                    <ka-inline-template init-scope="{project: await KaToolsV1.provider.get('projectName')}">[[project]]</ka-inline-template>
+                </p>
+            </div>
+        </div>
+        <div class="btn-group">
+
+            <button type="button" class="fs-3 pe-2 ps-2 btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="javascript:ka_goto('index')">Projekte</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="javascript:ka_goto('translation')"><i class="bi bi-chat-square-dots me-2 "></i>Übersetzungen</a></li>
+            </ul>
+        </div>
+        <div class="btn-group ms-3">
+
+            <button type="button" onclick="KaToolsV1.modal.show('show-translations')" class="fs-3 pe-2 ps-2 btn btn-outline-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-translate"></i>
+            </button>
+
+        </div>
+
+        <div class="ms-auto">
+
+            <div class="btn-group">
+                <button class="btn btn-outline-primary " id="pushBtn" title="Geänderte Inhalte veröffentlichen">
+                    <span class="spinner-border fs-3 pe-2 ps-2" role="status" hidden></span>
+                    <i class="bi bi-cloud-arrow-up fs-3  pe-2 ps-2 position-relative">
+                        <ka-inline-template init-scope="(api_info)=>api_info">
+                             <span ka.if="false" class="position-absolute translate-middle p-2  bg-danger border border-light rounded-circle" style="top:25%;left: 75%">
+                                <span class="visually-hidden">Unveröffentliche Änderungen</span>
+                             </span>
+                        </ka-inline-template>
+
+                    </i>
+
+                </button>
+                <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item" href="javascript:void(0)" onclick="document.querySelector('#pushBtn').dispatchEvent(new Event('click'))">
+                            <i class="bi bi-cloud-arrow-up pe-2 ps-2"></i>
+                            Änderungen veröffentlichen (PUSH)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" id="pullBtn" href="javascript: void(0)">
+                            <i class="bi bi-cloud-arrow-down pe-2 ps-2"></i>
+                            Änderungen abrufen (PULL)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<script>
+
+
+</script>

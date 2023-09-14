@@ -1,0 +1,39 @@
+## From: github.com/nfra-project/kickstart-skel
+##
+## Build on push to braches
+##
+## Examples
+## Branch: release/1.1   -> ghcr.io/some/repo:1.1
+
+name: UNSTABLE_build_and_push_to_github
+
+## SECURITY: Do not youe "pull_request_target" nr "pull_request" here! See
+## https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '11 10 7 * *'  # on 7th of every month at 10:11
+  workflow_dispatch:
+
+jobs:
+  build_and_push_github:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: "CI_BUILD_NAME=unstable CI_REGISTRY_IMAGE=$CI_REGISTRY/$GITHUB_REPOSITORY ./.kicker/kickstart.static.sh ci-build"
+        env:
+          CI_REGISTRY: ghcr.io
+          CI_REGISTRY_USER: giblab-user
+          CI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: DeployToCluster
+        run: "curl $DEPLOY_HOOK_URL"
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
+

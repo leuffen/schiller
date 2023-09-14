@@ -1,0 +1,21 @@
+
+
+.card .badge {
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+.card:hover .badge {
+    opacity: 1;
+}
+
+.bg-karo {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABb2lDQ1BpY2MAACiRdZE7SwNBFIW/JIqiEQstRCxSRLGIICpiqbFIEyREBaM2ySabCJtk2d0gwVawsQhYiDa+Cv+BtoKtgiAogoiVP8BXI7LecYWImFlm78eZOZeZM+CPG1rRbhqGYsmxkrFoaCG1GGp5IoifAAOMpTXbnEok4jQc7zf4VL0eUr0a7/t3tGdztga+VuFxzbQc4Unh+KpjKt4U7tYK6azwvnDEkgMKXyg94/Gj4rzHr4qtueQ0+FXPUP4XZ36xVrCKwoPC4aJR0X7Oo24SzJXmZ6X2yuzDJkmMKCEyVFjBwGFIakky+983/O2boSweTf4mVSxx5CmINyJqRbrmpOqi5+QzqKrc/+Zp66MjXvdgFJofXPelH1q24LPmuh8Hrvt5CIF7OCvV/WXJaeJN9FpdC+9B5zqcnNe1zDacbkDPnZm20t9SQKZf1+H5GDpS0HUFbUteVj/rHN3C3Jo80SXs7MKA7O9c/gL0tmgFOBC2NgAAAAlwSFlzAAALEgAACxIB0t1+/AAAAHhJREFUeNrt0kENADEIRUFaK/h3BFq6a6Lh0HkGPpmwqurEYJk5OR87Hg8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALzQOn+TB3S3DwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADu9gHklQsO2y5ZVgAAAABJRU5ErkJggg==');
+}
+
+
+.bg-karo img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
