@@ -1,7 +1,10 @@
 FROM ghcr.io/nfra-project/kickstart-flavor-php:unstable
-ENV DEV_CONTAINER_NAME="micx-mediastore"
+ENV DEV_CONTAINER_NAME="schiller"
 
-ENV VERBOSITY=9
+
+ENV CONF_PATH=/data
+ENV CONF_KEYSTORE_FILE=/data/.keystore.yml
+
 
 ADD / /opt
 RUN ["bash", "-c",  "chown -R user /opt"]

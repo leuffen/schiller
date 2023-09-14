@@ -4,7 +4,7 @@ define("DEV_MODE", (bool)"%DEV_MODE?0%");
 
 
 define("CONF_PATH", "%CONF_PATH?/opt/mock%");
-define("CONF_KEYSTORE_FILE", "%CONF_PATH?/opt/.keystore.yml%");
+define("CONF_KEYSTORE_FILE", "%CONF_KEYSTORE_FILE?/opt/.keystore.yml%");
 
 const CONF_API_MOUNT = "/v1/api";
 
