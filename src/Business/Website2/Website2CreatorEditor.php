@@ -32,6 +32,8 @@ class Website2CreatorEditor
         $tpl = new JobTemplate(__DIR__ . "/job-adjust.txt");
         $page = $pid->get();
 
+        if (trim ($page->header["_schiller_instructions"]) === "")
+            $page->header["_schiller_instructions"] = null;
 
         $tpl->setData([
             "context" => $this->context,
