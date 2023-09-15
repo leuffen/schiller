@@ -3,10 +3,11 @@ pid: pages/index1
 lang: de
 _schiller_template: pages/index1
 title: Kontakt
-order: ""
+order: 0
 description: ""
 ai_instructions: ""
 _schiller_instructions: ""
+image: ""
 ---
 ## Kontakt
 

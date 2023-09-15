@@ -7,10 +7,13 @@ import {API} from "../_routes";
 // language=html
 let html = `
         
-<div class="container-fluid">
+<div class="container-fluid" style="height: 50000px">
     <div class="row">
         <h2>Pages:</h2>
         <div ka.for="let page of pages" class="border-bottom p-3">
+            <details ka.attr.open="openstate[page.pid] ?? false === true">
+                <summary ka.on.click="openstate[page.pid] =  ! openstate[page.pid] ?? false">[[ page.pid ]]</summary>
+                
             <div class="row">
                 <div class="col">[[ page.pid ]]</div>
                 <div class="col">
@@ -28,6 +31,11 @@ let html = `
                 <div class="col">
                     <label>Order</label>
                     <input class="w-100" type="number" ka.bind="page.order">
+                </div>
+                <div class="col">
+                    <label>Image</label>
+                    <input class="w-100" type="url" ka.bind="page.image">
+                    <img ka.prop.src="page.image" style="max-height: 100px">
                 </div>
                 <div class="col">
                     <label>Description</label>
@@ -48,6 +56,7 @@ let html = `
                     <button ka.on.click="$fn.generate(page.pid, $this)">Generate</button>
                 </div>
             </div>
+</details>
         </div>
             
     </div>
@@ -79,6 +88,7 @@ class IndexPage extends KaCustomElement {
         let scope = this.init({
             pages: [],
             templates: [],
+            openstate: {"pages/index1": "open"},
             $fn: {
                 async create(templatePid: string, aliasPid: string = null) {
                     await api_call(API["api.pid.create_POST"], {templatePid, aliasPid})

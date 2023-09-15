@@ -2,12 +2,13 @@
 pid: pages/test34
 lang: de
 title: Home
-order: "99"
+order: 99
 description: ""
 ai_instructions: Schreibe ganz viel Quatsch
 permalink: dfgwrewert
 _schiller_template: pages/index1
 _schiller_instructions: Schreibe ein Gedicht über Pimmelkörner.
+image: ""
 ---
 ## Home
 {: layout="use: #sec-card-2col"}
