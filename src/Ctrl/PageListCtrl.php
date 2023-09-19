@@ -46,15 +46,28 @@ class PageListCtrl
         $targetAliasPid = $query["aliasPid"] ?? $fromTemplatePid;
         $targetAliasPid = trim($targetAliasPid) == "" ? $fromTemplatePid : $targetAliasPid;
 
-        $page = $this->templateRepo->selectPid($fromTemplatePid, "de")->get();
+        $templatePid = $this->templateRepo->selectPid($fromTemplatePid, "de");
+        $page = $templatePid->get();
 
-        $newPage = $this->frontmatterRepo->selectPid($targetAliasPid, "de")->create();
+        $newPid = $this->frontmatterRepo->selectPid($targetAliasPid, "de");
+        $newPage = $newPid->create();
         $newPage->body = $page->body;
         $newPage->header = $page->header;
         $newPage->header["pid"] = $targetAliasPid;
         $newPage->header["_schiller_template"] = $fromTemplatePid;
 
         $this->frontmatterRepo->storePage($newPage);
+
+        out(phore_uri($templatePid->getAbsoluteStoreUri())->getDirname()->withFileName("_section.yml"));
+
+        // Copy the _section.yml if not existing
+        $templateSectionYaml = phore_uri($templatePid->getAbsoluteStoreUri())->getDirname()->withFileName("_section.yml");
+        $pageSectionYaml = phore_file($newPid->getAbsoluteStoreUri())->getDirname()->withFileName("_section.yml");
+
+        if ($templateSectionYaml->exists() && ! $pageSectionYaml->exists()) {
+            $templateSectionYaml->streamCopyTo($pageSectionYaml);
+        }
+
         return ["ok" => true];
     }
 
@@ -87,6 +100,22 @@ class PageListCtrl
 
         $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai);
         $w2c->adjust($page);
+        return ["ok" => true];
+    }
+
+      #[BraceRoute("POST@/pages/generateMeta()", "api.pid.generateMeta")]
+    public function generateMeta(array $query, )
+    {
+        set_time_limit(300);
+        ignore_user_abort(true);
+
+        $pid = $query["pid"];
+
+
+        $page = $this->frontmatterRepo->selectPid($pid, "de");
+
+        $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai);
+        $w2c->generateMeta($page);
         return ["ok" => true];
     }
 

@@ -42,7 +42,7 @@ class Website2CreatorEditor
 
             "ai_instructions" => $page->header["_schiller_instructions"] ?? "Schreibe den Text auf den Context um!"
         ]);
-        $this->client->reset($tpl->getSystemContent(), 0.4);
+        $this->client->reset($tpl->getSystemContent(), 0.2);
         $this->client->getCache()->clear();
         $this->client->textComplete([
             $page->body,
@@ -53,5 +53,25 @@ class Website2CreatorEditor
         });
 
     }
+
+
+    public function generateMeta(FrontmatterRepoPid $pid) {
+        $tpl = new JobTemplate(__DIR__ . "/job-generateMeta.txt");
+        $page = $pid->get();
+
+        $tpl->setData([
+            "context" => $this->context,
+            "title" => $page->header["title"] ?? "undefined",
+            "content" => $page->body,
+        ]);
+        $this->client->reset($tpl->getSystemContent(), 0.2);
+        $this->client->getCache()->clear();
+        $ret = $this->client->textComplete([
+            $tpl->getUserContent()
+        ]);
+        $page->header["description"] = $ret->getTextCleaned();
+        $this->targetRepo->storePage($page);
+    }
+
 
 }

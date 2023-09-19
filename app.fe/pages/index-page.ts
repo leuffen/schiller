@@ -53,7 +53,8 @@ let html = `
                     <button ka.on.click="$fn.copyContent(page.pid, $scope.$ref['copyFrom'+page.pid].value)">Copy</button>
                 </div>
                 <div class="col">
-                    <button ka.on.click="$fn.generate(page.pid, $this)">Generate</button>
+                    <button ka.on.click="$fn.generate(page.pid, $this)">Generate Page</button>
+                    <button ka.on.click="$fn.generateMeta(page.pid, $this)">Generate Meta Description</button>
                 </div>
             </div>
 </details>
@@ -106,6 +107,11 @@ class IndexPage extends KaCustomElement {
                 async generate(pid: string, element: HTMLElement) {
                     element.innerHTML = "generating...";
                     await api_call(API["api.pid.generate_POST"], {pid});
+                    element.innerHTML = "DONE";
+                },
+                async generateMeta(pid: string, element: HTMLElement) {
+                    element.innerHTML = "generating...";
+                    await api_call(API["api.pid.generateMeta_POST"], {pid});
                     element.innerHTML = "DONE";
                 },
                 async update() : void {
