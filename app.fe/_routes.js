@@ -5,5 +5,6 @@ export const API = {
 	"api.pid.copyContent_POST": "POST@/v1/api/pages/copyContent()",
 	"api.pid.generate_POST": "POST@/v1/api/pages/generate()",
 	"api.pid.generateMeta_POST": "POST@/v1/api/pages/generateMeta()",
+	"api.pid.modifyPageByInstructions_POST": "POST@/v1/api/pages/modifyPageByInstructions()",
 	"templates.list_GET": "GET@/v1/api/templates/list"
 };

@@ -119,4 +119,22 @@ class PageListCtrl
         return ["ok" => true];
     }
 
+          #[BraceRoute("POST@/pages/modifyPageByInstructions()", "api.pid.modifyPageByInstructions")]
+    public function modifyPageByInstructions(array $query, array $body)
+    {
+        set_time_limit(300);
+        ignore_user_abort(true);
+
+        $pid = $query["pid"];
+        $instructions = $body["instructions"];
+
+
+
+        $page = $this->frontmatterRepo->selectPid($pid, "de");
+
+        $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai);
+        $w2c->modifyPage($page, $instructions);
+        return ["ok" => true];
+    }
+
 }

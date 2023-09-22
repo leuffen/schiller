@@ -3,6 +3,7 @@ import {api_call, href, route, router} from "@kasimirjs/app";
 import {currentRoute} from "@kasimirjs/app";
 import {CurRoute} from "@kasimirjs/app";
 import {API} from "../_routes";
+import {DefaultModal, FlexModal} from "@kasimirjs/kit-bootstrap";
 
 // language=html
 let html = `
@@ -55,6 +56,7 @@ let html = `
                 <div class="col">
                     <button ka.on.click="$fn.generate(page.pid, $this)">Generate Page</button>
                     <button ka.on.click="$fn.generateMeta(page.pid, $this)">Generate Meta Description</button>
+                    <button ka.on.click="$fn.modify(page.pid, $this)">Modify</button>
                 </div>
             </div>
 </details>
@@ -72,6 +74,7 @@ let html = `
              <select ka.ref="'tplPid'" ka.options="templates" ka.ref="'tplPid'"></select>
             <input class="w-100" placeholder="Alias PID (optional)" type="text" ka.ref="'newPid'">
             <button ka.on.click="$fn.create($scope.$ref.tplPid.value, $scope.$ref.newPid.value)">Create</button>
+             
         </div>
     </div>
 </div>
@@ -113,6 +116,16 @@ class IndexPage extends KaCustomElement {
                     element.innerHTML = "generating...";
                     await api_call(API["api.pid.generateMeta_POST"], {pid});
                     element.innerHTML = "DONE";
+                },
+                async modify(pid: string, element: HTMLElement) {
+                    let modal = new FlexModal("Seite Ändern", `<textarea ka.bind="$scope.text"></textarea>`, [`<button ka.on.click="$fn.resolve()">Save</button>`]);
+                    let result = (await modal.show({text: "muh"}))?.text;
+                    if (!result)
+                        return;
+
+                    element.innerHTML = "generating...";
+                    await api_call(API["api.pid.modifyPageByInstructions_POST"], {pid}, {instructions: result});
+                    element.innerHTML = "Modify";
                 },
                 async update() : void {
                     scope.pages = [];

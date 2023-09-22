@@ -74,4 +74,23 @@ class Website2CreatorEditor
     }
 
 
+    public function modifyPage (FrontmatterRepoPid $pid, string $instructions) {
+        $tpl = new JobTemplate(__DIR__ . "/job-modify-text.txt");
+        $page = $pid->get();
+
+        $tpl->setData([
+            "instructions" => $instructions,
+        ]);
+        $this->client->reset($tpl->getSystemContent(), 0.2);
+        $this->client->getCache()->clear();
+        $this->client->textComplete([
+            $page->body,
+            $tpl->getUserContent()
+        ], streamer: function (LackOpenAiResponse $response) use ($page) {
+            $page->body = $response->getTextCleaned();
+            $this->targetRepo->storePage($page);
+        });
+    }
+
+
 }
