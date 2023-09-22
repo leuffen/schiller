@@ -118,8 +118,8 @@ class IndexPage extends KaCustomElement {
                     element.innerHTML = "DONE";
                 },
                 async modify(pid: string, element: HTMLElement) {
-                    let modal = new FlexModal("Seite Ändern", `<textarea ka.bind="$scope.text"></textarea>`, [`<button ka.on.click="$fn.resolve()">Save</button>`]);
-                    let result = (await modal.show({text: "muh"}))?.text;
+                    let modal = new FlexModal("Seite Ändern", `<textarea style="width: 100%; min-height:400px" ka.bind="$scope.text"></textarea>`, [`<button ka.on.click="$fn.resolve()">Save</button>`]);
+                    let result = (await modal.show({text: ""}))?.text;
                     if (!result)
                         return;
 
