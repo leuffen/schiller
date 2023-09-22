@@ -32,7 +32,7 @@
     "reflect-metadata": "*",
     "bootstrap": "^5.3"
   },
-  "workspaces--": [
+  "workspaces": [
     "workspaces/*"
   ],
   "devDependencies": {
