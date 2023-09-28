@@ -6,7 +6,7 @@ Rules:
 - Do not modify {% code %}
 - Do not modify {{ code }}
 - Do not modify <!-- code -->
-- Preserve Markdown Images ![]() and Links []()
+- Preserve Markdown Images ![]()
 - Preserve HTML/JavsScript Code
 - Do not alter structure of Headings
 - Do not add or remove images or blockquotes
