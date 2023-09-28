@@ -1,4 +1,4 @@
-import {customElement, ka_sleep, KaCustomElement, KaHtmlElement, template} from "@kasimirjs/embed";
+import {customElement, ka_session_storage, ka_sleep, KaCustomElement, KaHtmlElement, template} from "@kasimirjs/embed";
 import {api_call, href, route, router} from "@kasimirjs/app";
 import {currentRoute} from "@kasimirjs/app";
 import {CurRoute} from "@kasimirjs/app";
@@ -118,10 +118,16 @@ class IndexPage extends KaCustomElement {
                     element.innerHTML = "DONE";
                 },
                 async modify(pid: string, element: HTMLElement) {
+
+                    let sessionStorage = ka_session_storage({}, "modify");
+
                     let modal = new FlexModal("Seite Ändern", `<textarea style="width: 100%; min-height:400px" ka.bind="$scope.text"></textarea>`, [`<button ka.on.click="$fn.resolve()">Save</button>`]);
-                    let result = (await modal.show({text: ""}))?.text;
+                    let result = (await modal.show({text: sessionStorage[pid] ?? ""}))?.text;
+
                     if (!result)
                         return;
+
+                    sessionStorage[pid] = result;
 
                     element.innerHTML = "generating...";
                     await api_call(API["api.pid.modifyPageByInstructions_POST"], {pid}, {instructions: result});
