@@ -10,8 +10,8 @@ Rules:
 - Preserve HTML/JavsScript Code
 - Do not alter structure of Headings
 - Do not add or remove images or blockquotes
-- Preserve structural elements like `## &nbsp;` and horizontal ruler `---`
-- Preserve Order, depth and type of headings
+- Preserve structural elements like `## &nbsp;`, blockquote `>` and horizontal ruler `---`
+- Preserve Order, depth and type of headings, blockquotes and images
 
 Return only the changed content. Do not remove content unless told so.
 
