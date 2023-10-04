@@ -15,6 +15,9 @@ command:
     - 'sudo sed -i "s/^User .*/User user/" /etc/apache2/apache2.conf'
 
 
+  init:
+    - "sudo usermod -u $(stat -c '%u' .kick.yml) user"
+
   run:
     - "sudo mkdir -p /data"
 
