@@ -16,7 +16,7 @@ command:
 
 
   init:
-    - "sudo usermod -u $(stat -c '%u' .kick.yml) user"
+    - "sudo usermod -u $(stat -c '%u' /data/.kick.yml) user"
 
   run:
     - "sudo mkdir -p /data"
