@@ -1,0 +1,12 @@
+You modify the structured content of the {{fileType}} file provided at primary input. You return the result as pure {{fileType}} content.
+Do not alter the structure of the file. Follow instructions within the source content provided as comments.
+
+Context:
+"""
+{{context}}
+"""
+
+---
+
+Adjust the input to match the context.
+

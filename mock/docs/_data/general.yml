@@ -1,0 +1,43 @@
+pagebuilder: https://pagebuilder.leuffen.de/e/subscription_id/default
+site_base_url: https://www.xyz.de
+subscription_id: <subscriptio_id>
+
+# Titel der Website
+title: Matthias Leuffen - Essen
+
+
+# Name der Praxis
+name:  Matthias Leuffen
+name2: ~
+
+
+# Kurzbeschreibung
+desc: Resident of Essen
+
+
+logoalt: Matthias Leuffen
+street: Wurststraße 5
+zip: 122345
+city: Essen
+
+termin_url: ~
+map_url: ""
+map_link: ""
+
+datenschutzbeauftragter: |
+bildnachweise: |
+  Bilder von Andreas Test
+  <br>Bilder von <a href="https://stock.adobe.com">Adobe Stock</a>
+# Telefonnummer wie sie angezeigt wird
+phone1_text: "(0 74 41) 00 123"
+# Telefonnummer mit länderprefix für tel: links (ohne space)
+phone1: "+49744100123"
+fax1_text: "(07441) 00 1234"
+
+email: mail@domain.de
+domain:
+
+tools:
+  googlemaps: true
+  jameda: false
+  recaptcha: false

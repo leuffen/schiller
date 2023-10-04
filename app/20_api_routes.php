@@ -4,6 +4,7 @@ namespace App;
 
 use App\Ctrl\GalleryCtrl;
 use App\Ctrl\InfoCtrl;
+use App\Ctrl\InitializeCtrl;
 use App\Ctrl\PageListCtrl;
 use App\Ctrl\TemplateListCtrl;
 use App\Ctrl\UploadCtrl;
@@ -19,6 +20,7 @@ AppLoader::extend(function (BraceApp $app) {
     // Controller classes
     $app->router->registerClass($mount, PageListCtrl::class);
     $app->router->registerClass($mount, TemplateListCtrl::class);
+    $app->router->registerClass($mount, InitializeCtrl::class);
 
 
     // Other stuff
