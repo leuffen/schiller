@@ -11,10 +11,11 @@ config_file:
 command:
   build:
     - "composer update"
-    #- "npm update"
+    - "npm update"
 
 
 
+  # Run Apache as owner UID of /data/.kick.yml
   init:
     - "sudo mkdir -p /data"
     - "sudo -E usermod -o -u $(stat -c '%u' /data/.kick.yml  || echo $DEV_UID) user"
