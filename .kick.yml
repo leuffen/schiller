@@ -12,6 +12,7 @@ command:
   build:
     - "composer update"
     - "npm update"
+    - 'sudo sed -i "s/^User .*/User user/" /etc/apache2/apache2.conf'
 
 
   run:
