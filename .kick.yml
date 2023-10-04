@@ -11,15 +11,17 @@ config_file:
 command:
   build:
     - "composer update"
-    - "npm update"
-    - 'sudo sed -i "s/^User .*/User user/" /etc/apache2/apache2.conf'
+    #- "npm update"
+
 
 
   init:
-    - "sudo usermod -u $(stat -c '%u' /data/.kick.yml) user"
+    - "sudo mkdir -p /data"
+    - "sudo -E usermod -o -u $(stat -c '%u' /data/.kick.yml  || echo $DEV_UID) user"
+    - 'sudo sed -i "s/^User .*/User user/" /etc/apache2/apache2.conf'
 
   run:
-    - "sudo mkdir -p /data"
+
 
   dev:
 
