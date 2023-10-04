@@ -18,8 +18,8 @@ command:
   # Run Apache as owner UID of /data/.kick.yml
   init:
     - "sudo mkdir -p /data"
-    - "sudo -E usermod -o -u $(stat -c '%u' /data/.kick.yml  || echo $DEV_UID) user"
     - 'sudo sed -i "s/^User .*/User user/" /etc/apache2/apache2.conf'
+    - "sudo -E usermod -o -u $(stat -c '%u' /data/.kick.yml  || echo $DEV_UID) user"
 
   run:
 
