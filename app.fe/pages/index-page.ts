@@ -45,7 +45,7 @@ let html = `
             </div>
             <div class="row mt-4">
                 <div class="col">
-                    <label>AI Instructions:</label>
+                    <label>AI Instructions (no Markdown!):</label>
                     <textarea ka.bind="page._schiller_instructions" class="w-100"></textarea>
                 </div>
                 <div class="col">

@@ -42,7 +42,7 @@ class Website2CreatorEditor
 
             "ai_instructions" => $page->header["_schiller_instructions"] ?? "Schreibe den Text auf den Context um!"
         ]);
-        $this->client->reset($tpl->getSystemContent(), 0.2);
+        $this->client->reset($tpl->getSystemContent(), 0.05);
         $this->client->getCache()->clear();
         $this->client->textComplete([
             $page->body,
@@ -64,7 +64,7 @@ class Website2CreatorEditor
             "title" => $page->header["title"] ?? "undefined",
             "content" => $page->body,
         ]);
-        $this->client->reset($tpl->getSystemContent(), 0.2);
+        $this->client->reset($tpl->getSystemContent(), 0.05);
         $this->client->getCache()->clear();
         $ret = $this->client->textComplete([
             $tpl->getUserContent()
@@ -81,7 +81,7 @@ class Website2CreatorEditor
         $tpl->setData([
             "instructions" => $instructions,
         ]);
-        $this->client->reset($tpl->getSystemContent(), 0.2);
+        $this->client->reset($tpl->getSystemContent(), 0.05);
         $this->client->getCache()->clear();
         $this->client->textComplete([
             $page->body,
