@@ -18,10 +18,9 @@ Return only the changed content. Do not remove content unless told so.
 
 ---
 
-Use the input as template for the output.
-Modify the text according to instructions below. Do not edit the structure of the input. Correct spelling and punctuation in instructions.
+Modify the input according to instructions below. Do not edit the structure of the input. Correct spelling and punctuation in instructions.
 
-Instructions:
+Instructions (ignore Markdown formatting):
 """
 {{instructions}}
 """
