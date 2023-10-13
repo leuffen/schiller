@@ -15,12 +15,13 @@ Rules:
 
 Return only the changed content. Do not remove content unless told so.
 
+Do not apply markdown-formatting from Instructions to input. Ignore Markdown formatting in instructions completely.
 
 ---
 
 Modify the input according to instructions below. Do not edit the structure of the input. Correct spelling and punctuation in instructions.
 
-Instructions (ignore Markdown formatting):
+Instructions:
 """
 {{instructions}}
 """
