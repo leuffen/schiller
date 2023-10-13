@@ -18,10 +18,10 @@ Return only the changed content. Do not remove content unless told so.
 
 ---
 
-Modify the input according to instructions below. Do not edit the structure of the input. Correct spelling and punctuation in instructions.
+Use the input as template for the output.
+Modify the text according to instructions below. Do not edit the structure of the input. Correct spelling and punctuation in instructions.
 
 Instructions:
 """
 {{instructions}}
 """
-
