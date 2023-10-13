@@ -15,7 +15,7 @@ Rules:
 
 Return only the changed content. Do not remove content unless told so.
 
-Do not apply markdown-formatting from Instructions to input. Ignore Markdown formatting in instructions completely.
+Tread markdown in Instructions as logical structure elements only. Do not apply markdown-formatting from Instructions to input. Ignore Markdown formatting in instructions completely.
 
 ---
 
