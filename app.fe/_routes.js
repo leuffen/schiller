@@ -8,5 +8,6 @@ export const API = {
 	"api.pid.modifyPageByInstructions_POST": "POST@/v1/api/pages/modifyPageByInstructions()",
 	"templates.list_GET": "GET@/v1/api/templates/list",
 	"api.initialize.post_POST": "POST@/v1/api/initialize/init()",
-	"api.initialize.ai_gen_POST": "POST@/v1/api/initialize/ai_gen()"
+	"api.initialize.ai_gen_POST": "POST@/v1/api/initialize/ai_gen()",
+	"api.ai.generate_change_request_POST": "POST@/v1/api/ai/generate_change_request()"
 };

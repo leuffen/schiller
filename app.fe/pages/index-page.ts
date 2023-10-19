@@ -10,7 +10,7 @@ let html = `
         
 <div class="container-fluid" style="height: 50000px">
     <div class="row">
-        <h2>Pages: <a href="/static/initialize">Init</a></h2>
+        <h2>Pages: <a href="/static/initialize">Init</a> <a href="/static/modify">Modify</a></h2>
         <div ka.for="let page of pages" class="border-bottom p-3">
             <details ka.attr.open="openstate[page.pid] ?? false === true">
                 <summary ka.on.click="openstate[page.pid] =  ! openstate[page.pid] ?? false">[[ page.pid ]]</summary>

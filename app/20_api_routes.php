@@ -2,12 +2,10 @@
 namespace App;
 
 
-use App\Ctrl\GalleryCtrl;
-use App\Ctrl\InfoCtrl;
+use App\Ctrl\AiEndpointCtrl;
 use App\Ctrl\InitializeCtrl;
 use App\Ctrl\PageListCtrl;
 use App\Ctrl\TemplateListCtrl;
-use App\Ctrl\UploadCtrl;
 use Brace\Auth\Basic\RequireValidAuthTokenMiddleware;
 use Brace\Core\AppLoader;
 use Brace\Core\BraceApp;
@@ -21,6 +19,7 @@ AppLoader::extend(function (BraceApp $app) {
     $app->router->registerClass($mount, PageListCtrl::class);
     $app->router->registerClass($mount, TemplateListCtrl::class);
     $app->router->registerClass($mount, InitializeCtrl::class);
+    $app->router->registerClass($mount, AiEndpointCtrl::class);
 
 
     // Other stuff
