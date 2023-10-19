@@ -13,12 +13,13 @@ Rules:
 - Preserve structural elements like `## &nbsp;`, blockquote `>` and horizontal ruler `---`
 - Preserve Order, depth and type of headings, blockquotes and images
 
-Return only the changed content. Do not remove content unless told so.
+Return the full modified markdown content. Do not remove content unless told so.
 
 
 ---
 
 Modify the input according to instructions below. Do not edit the structure of the input. Correct spelling and punctuation in instructions.
+Leave unaffected content as is.
 
 Instructions:
 """
