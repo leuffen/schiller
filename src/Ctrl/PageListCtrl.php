@@ -107,7 +107,6 @@ class PageListCtrl
     public function generateMeta(array $query, )
     {
         set_time_limit(300);
-        ignore_user_abort(true);
 
         $pid = $query["pid"];
 
@@ -123,7 +122,6 @@ class PageListCtrl
     public function modifyPageByInstructions(array $query, array $body)
     {
         set_time_limit(300);
-        ignore_user_abort(true);
 
         $pid = $query["pid"];
         $instructions = $body["instructions"];
