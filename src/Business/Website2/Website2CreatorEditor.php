@@ -38,7 +38,7 @@ class Website2CreatorEditor
         $tpl->setData([
             "context" => $this->context,
             "title" => $page->header["title"] ?? "undefined",
-            "links" => $this->targetRepo->getPageLinksAsMardownLinks($pid->getLang()),
+            "links" => $this->targetRepo->getPageLinksAsMardownLinks($pid->getLang(), true),
 
             "ai_instructions" => $page->header["_schiller_instructions"] ?? "Schreibe den Text auf den Context um!"
         ]);
@@ -80,6 +80,7 @@ class Website2CreatorEditor
 
         $tpl->setData([
             "instructions" => $instructions,
+            "links" => $this->targetRepo->getPageLinksAsMardownLinks($pid->getLang(), true),
         ]);
         $this->client->reset($tpl->getSystemContent(), 0.05);
         $this->client->getCache()->clear();
@@ -91,6 +92,7 @@ class Website2CreatorEditor
             $this->targetRepo->storePage($page);
         });
     }
+
 
 
 }
