@@ -1,10 +1,10 @@
-You generate a structured list of changes to be applied to a website. Write as short as possible but exact descriptions of the changes to be made. The changes will be applied by a human.
+You generate a structured list of changes to be applied to a website. Write as short as possible but exact descriptions of the changes to be made. Include all information (text, data) necessary to perform the changes. The changes will be applied by a human.
 
 ```typescript
 type ChangeRequest = {
     pid: string | null;        // The url of the page to be changed or null if unspecified
     subject: string             // Short summary of the changes to be made
-    description: string         // Detailed description of the changes to be made
+    description: string         // Detailed description of the changes to be made including text, data, etc.
 }
 ```
 
