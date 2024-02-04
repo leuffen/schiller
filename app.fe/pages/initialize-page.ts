@@ -12,6 +12,15 @@ let html = `
     <div class="row">
         <h2>Initialize:</h2>
         <div>
+            <ul>
+                <li>Run 'npm update'</li>
+                <li>Press 'Initialize'</li>
+                <li>Edit package.json to current theme version</li>
+                <li>Run 'npm update' again'</li>
+                <li>Ai Generate all files</li>
+            </ul>
+        </div>
+        <div>
             <button ka.on.click="$fn.initialize()">Initialize (Copy all struff from _root to /opt)</button>
         </div>
         <div class="mt-4">
