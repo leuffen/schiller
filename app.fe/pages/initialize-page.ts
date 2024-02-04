@@ -13,9 +13,11 @@ let html = `
         <h2>Initialize:</h2>
         <div>
             <ul>
+                <li>Edit package.json to current theme version</li>
                 <li>Run 'npm update'</li>
                 <li>Press 'Initialize'</li>
-                <li>Edit package.json to current theme version</li>
+                <li>Verify package.json is still latest version</li>
+                
                 <li>Run 'npm update' again'</li>
                 <li>Ai Generate all files</li>
             </ul>
