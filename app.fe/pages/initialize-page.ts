@@ -33,7 +33,7 @@ class IndexPage extends KaCustomElement {
     constructor(public route : CurRoute) {
         super();
         let scope = this.init({
-            fileList: ["/docs/_data/general.yml"],
+            fileList: ["/docs/_data/general.yml", "/.schiller-context.txt"],
             file : null,
             $fn: {
                 async initialize(templatePid: string, aliasPid: string = null) {
