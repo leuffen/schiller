@@ -13,7 +13,7 @@ let html = `
         <h2>Page Admin</h2>
         <div ka.for="let page of pages" class="border-bottom p-3">
             <details ka.attr.open="openstate[page.pid] ?? false === true">
-                <summary ka.on.click="openstate[page.pid] =  ! openstate[page.pid] ?? false">[[ page.pid ]]</summary>
+                <summary ka.on.click="openstate[page.pid] =  ! openstate[page.pid] ?? false" class="fw-bold">[[ page.pid ]]</summary>
                 
             <div class="row">
                 <div class="col">[[ page.pid ]]</div>
