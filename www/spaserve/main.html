@@ -5,13 +5,25 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, shrink-to-fit=no, user-scalable=no">
-    <title>SchilLER - by leuffen.de</title>
-
+    <title>SHILLER - by leuffen.de</title>
+    <link rel="icon" href="/img/schiller-logo.webp">
 
     <link rel="stylesheet" href="_vendor/@.css">
     <script src="app.js"></script>
 </head>
 <body>
+    <div style="width: 100%;height:84px;" class="bg-light mb-4 d-flex align-content-center border-bottom shadow-sm">
+        <a href="/">
+            <img src="/img/schiller-logo.webp" alt="SHILLER" height="84" class="p-1" style="float:left">
+
+        </a>
+
+        <div style="font-size: 1.1em;" class="m-2 text-dark d-flex align-items-center">
+            <h1 class="mx-3 m-0 p-0" style="color: darkred">SHILLER <small style="font-size: 20px; color: darkseagreen">by leuffen.de</small></h1>
+            <a href="/static/initialize" class="btn btn-outline-secondary mx-1">Init</a>
+            <a href="/static/modify" class="btn btn-outline-secondary mx-1">Modify</a>
+        </div>
+    </div>
 
     <ka-router-content></ka-router-content>
 
