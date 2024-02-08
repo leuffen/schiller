@@ -11,6 +11,8 @@ name: UNSTABLE_build_and_push_to_github
 ## https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
 on:
   push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
     branches:
       - main
   schedule:
@@ -26,6 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build
+        ## Always push --tags before push
         run: |
           tag=$(git tag --contains HEAD)
           [[ "$tag" == "" ]] && tag='unstable'
