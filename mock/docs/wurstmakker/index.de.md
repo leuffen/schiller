@@ -2,6 +2,11 @@
 pid: wurstmakker/index
 lang: de
 _schiller_template: pages/index1
+title: ""
+order: 0
+image: ""
+description: ""
+_schiller_instructions: ""
 ---
 ## Herzlich Willkommen
 {: layout="use: #sec-card-2col"}

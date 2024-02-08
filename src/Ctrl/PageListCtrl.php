@@ -122,7 +122,7 @@ class PageListCtrl
     public function modifyPageByInstructions(array $query, array $body)
     {
         set_time_limit(300);
-
+        out($query);
         $pid = $query["pid"];
         $instructions = $body["instructions"];
 
@@ -131,6 +131,7 @@ class PageListCtrl
         $page = $this->frontmatterRepo->selectPid($pid, "de");
 
         $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai);
+
         $w2c->modifyPage($page, $instructions);
         return ["ok" => true];
     }
