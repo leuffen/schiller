@@ -26,7 +26,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build
-        run: "CI_BUILD_NAME=unstable CI_REGISTRY_IMAGE=$CI_REGISTRY/$GITHUB_REPOSITORY ./.kicker/kickstart.static.sh ci-build"
+        run: |
+          tag=$(git tag)
+          [[ "$tag" == "" ]] && tag='unstable'
+          CI_BUILD_NAME=$tag CI_REGISTRY_IMAGE=$CI_REGISTRY/$GITHUB_REPOSITORY ./.kicker/kickstart.static.sh ci-build
         env:
           CI_REGISTRY: ghcr.io
           CI_REGISTRY_USER: giblab-user
