@@ -29,6 +29,7 @@ jobs:
         run: |
           tag=$(git tag)
           [[ "$tag" == "" ]] && tag='unstable'
+          echo "Tag: $tag"
           CI_BUILD_NAME=$tag CI_REGISTRY_IMAGE=$CI_REGISTRY/$GITHUB_REPOSITORY ./.kicker/kickstart.static.sh ci-build
         env:
           CI_REGISTRY: ghcr.io
