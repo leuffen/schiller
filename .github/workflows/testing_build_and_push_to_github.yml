@@ -28,7 +28,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build
-        ## Always push --tags before push
         run: |
           tag=$(git tag --contains HEAD)
           [[ "$tag" == "" ]] && tag='unstable'

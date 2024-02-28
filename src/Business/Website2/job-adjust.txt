@@ -8,6 +8,7 @@ Rules:
 - Do not modify {{ code }}
 - Do not modify <!-- code -->
 - Do not alter structure of Headings
+- DO NOT remove Headings or content belonging to them unless explicitly told so
 - Do not add or remove images or blockquotes
 - Preserve structural headings like `## &nbsp;` and hr `---`
 

@@ -42,7 +42,7 @@ class Website2CreatorEditor
 
             "ai_instructions" => $page->header["_schiller_instructions"] ?? "Schreibe den Text auf den Context um!"
         ]);
-        $this->client->reset($tpl->getSystemContent(), 0.05);
+        $this->client->reset($tpl->getSystemContent(), 0.05, "gpt-4-turbo-preview");
         $this->client->getCache()->clear();
         $this->client->textComplete([
             $page->body,
@@ -82,7 +82,7 @@ class Website2CreatorEditor
             "instructions" => $instructions,
             "links" => $this->targetRepo->getPageLinksAsMardownLinks($pid->getLang(), true),
         ]);
-        $this->client->reset($tpl->getSystemContent(), 0.05);
+        $this->client->reset($tpl->getSystemContent(), 0.05, "gpt-4-turbo-preview");
         $this->client->getCache()->clear();
         $this->client->textComplete([
             $page->body,
