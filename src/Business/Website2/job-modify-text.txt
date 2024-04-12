@@ -4,7 +4,7 @@ Rules:
 - Preserve Whitespace
 - Do not modify {: code}
 - Do not modify {% code %}
-- Do not modify {{ code }}
+- Do not modify \{\{ code \}\} (without the backslashes)
 - Do not modify <!-- code -->
 - Preserve Markdown Images ![]()
 - Preserve HTML/JavsScript Code
