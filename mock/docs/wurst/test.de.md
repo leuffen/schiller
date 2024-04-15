@@ -8,6 +8,8 @@ description: ""
 ai_instructions: ""
 _schiller_instructions: ""
 image: ""
+availLangs:
+- de
 ---
 ## Über uns
 {: layout="use: #sec-card-2col"}

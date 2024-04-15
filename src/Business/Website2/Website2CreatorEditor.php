@@ -95,4 +95,50 @@ class Website2CreatorEditor
 
 
 
+    public function translateMeta(FrontmatterRepoPid $pid)
+    {
+        $page = $pid->get();
+
+        $headerTranslated = $this->client->getFacet()->promptData(__DIR__ . "/job-translate-meta.txt", [
+            "lang" => $pid->getLang(),
+            "input" => json_encode([
+                "title" => $page->header["title"] ?? "",
+                "description" => $page->header["description"] ?? "",
+                "permalink" => $page->header["permalink"] ?? "",
+                "short_description" => $page->header["short_description"] ?? "",
+            ]),
+        ], T_PageMeta::class);
+
+        foreach ($headerTranslated as $key => $value) {
+            $page->header[$key] = $value;
+            if ($key === "permalink" && $value !== null)
+                $page->header[$key] = $value;
+        }
+        $this->targetRepo->storePage($page);
+    }
+
+    public function translate(FrontmatterRepoPid $pid) {
+        $lang = $pid->getLang();
+        $tpl = new JobTemplate(__DIR__ . "/job-translate.txt");
+        $page = $pid->get();
+
+
+        $this->client->getCache()->clear();
+
+        $tpl->setData([
+            "lang" => $lang,
+            "links" => $this->targetRepo->getPageLinksAsMardownLinks($lang, true),
+            "content" => $page->body,
+        ]);
+        $this->client->reset($tpl->getSystemContent(), 0.05);
+        $ret = $this->client->textComplete([
+            $page->body,
+            $tpl->getUserContent()
+        ]);
+        $page->body = $ret->getTextCleaned();
+        $this->targetRepo->storePage($page);
+    }
+
+
+
 }

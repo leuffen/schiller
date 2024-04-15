@@ -9,6 +9,8 @@ permalink: dfgwrewert
 _schiller_template: pages/index1
 _schiller_instructions: Schreibe ein Gedicht über Pimmelkörner.
 image: ""
+availLangs:
+- de
 ---
 ## Home
 {: layout="use: #sec-card-2col"}

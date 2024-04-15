@@ -9,6 +9,9 @@ description: "\U0001F4DE\U0001F4AC Kontaktieren Sie uns bei Fragen oder Anregung
 ai_instructions: ""
 _schiller_instructions: ""
 image: ""
+availLangs:
+- de
+- en
 ---
 ## Unsere Therapien
 {: layout="use: #sec-card-2col"}

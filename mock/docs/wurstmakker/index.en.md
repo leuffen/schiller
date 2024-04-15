@@ -1,15 +1,16 @@
 ---
 pid: wurstmakker/index
-lang: de
+lang: en
 _schiller_template: pages/index1
 title: ""
 order: 0
 image: ""
-description: "Diese Seite ist toll"
+description: Diese Seite ist toll
 _schiller_instructions: ""
 availLangs:
 - de
-permalink: /en/en/index
+- en
+permalink: /en/en/en/index
 ---
 ## Herzlich Willkommen
 {: layout="use: #sec-card-2col"}

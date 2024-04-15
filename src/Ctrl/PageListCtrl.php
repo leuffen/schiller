@@ -24,11 +24,25 @@ class PageListCtrl
 
 
     #[BraceRoute("GET@/pages/list", "api.list")]
-    public function list()
+    public function list(array $query)
     {
+        $lang = $query["lang"] ?? "de";
         return [
-            "pages" => $this->frontmatterRepo->export("*")
+            "pages" => $this->frontmatterRepo->export("*", $lang),
         ];
+    }
+
+
+
+    #[BraceRoute("GET@/pages/getAvailLangs()", "api.langs.get")]
+    public function getAvailLangs()
+    {
+        $langs = [];
+        foreach ($this->frontmatterRepo->list() as $page) {
+            $langs[] = $page->lang;
+        }
+        return array_values(array_unique($langs));
+
     }
 
     #[BraceRoute("POST@/pages/update()", "api.pid.post")]
@@ -67,6 +81,52 @@ class PageListCtrl
         if ($templateSectionYaml->exists() && ! $pageSectionYaml->exists()) {
             $templateSectionYaml->streamCopyTo($pageSectionYaml);
         }
+
+        return ["ok" => true];
+    }
+
+
+    #[BraceRoute("POST@/pages/copyLanguageContent()", "api.pid.copyLanguageContent")]
+    public function copyLanguageContent(array $query)
+    {
+        $pid = $query["pid"];
+        $fromLang = $query["fromLang"];
+        $toLang = $query["toLang"];
+
+        $tplPage = $this->frontmatterRepo->selectPid($pid, $fromLang)->get();
+
+        $newPage = $this->frontmatterRepo->selectPid($pid, $toLang)->create();
+        $newPage->body = $tplPage->body;
+        $newPage->header = $tplPage->header;
+        $newPage->header["lang"] = $toLang;
+        if ($newPage->header["permalink"] ?? null !== null)
+            $newPage->header["permalink"] = "/$toLang" . $newPage->header["permalink"];
+
+        $this->frontmatterRepo->storePage($newPage);
+        return ["ok" => true];
+    }
+
+    #[BraceRoute("POST@/pages/translate()", "api.pid.translate")]
+    public function translate(array $query)
+    {
+        $pid = $query["pid"];
+        $lang = $query["lang"];
+
+        $page = $this->frontmatterRepo->selectPid($pid, $lang);
+        $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai);
+        $w2c->translate($page);
+
+        return ["ok" => true];
+    }
+    #[BraceRoute("POST@/pages/translateMeta()", "api.pid.translateMeta")]
+    public function translateMeta(array $query)
+    {
+        $pid = $query["pid"];
+        $lang = $query["lang"];
+
+        $page = $this->frontmatterRepo->selectPid($pid, $lang);
+        $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai);
+        $w2c->translateMeta($page);
 
         return ["ok" => true];
     }
@@ -124,11 +184,12 @@ class PageListCtrl
         set_time_limit(300);
         out($query);
         $pid = $query["pid"];
+        $lang = $query["lang"];
         $instructions = $body["instructions"];
 
 
 
-        $page = $this->frontmatterRepo->selectPid($pid, "de");
+        $page = $this->frontmatterRepo->selectPid($pid, $lang);
 
         $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai);
 

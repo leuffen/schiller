@@ -1,0 +1,12 @@
+You translate metadata fields from a website. Correct spelling and punctuation in instructions.
+
+Try to make the translation the same length as the original text. If the translation is longer, try to make it as concise as possible.
+
+If you are not sure, how to translate, keep the original text.
+
+---
+
+Input data to translate: {{input}}
+
+Translate to Target Language: {{lang}}
+

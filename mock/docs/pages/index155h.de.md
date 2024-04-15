@@ -9,6 +9,8 @@ ai_instructions: asdfasdf
 permalink: dfgwrewert
 _schiller_instructions: ""
 image: ""
+availLangs:
+- de
 ---
 ## Marxitische Brüder
 
