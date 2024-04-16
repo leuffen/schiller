@@ -171,7 +171,7 @@ class IndexPage extends KaCustomElement {
                     sessionStorage[pid] = result;
 
                     element.innerHTML = "generating...";
-                    await api_call(API["api.pid.modifyPageByInstructions_POST"], {pid}, {instructions: result});
+                    await api_call(API["api.pid.modifyPageByInstructions_POST"], {pid, lang: scope.lang}, {instructions: result});
                     element.innerHTML = "Modify";
                 },
                 async update() : void {
