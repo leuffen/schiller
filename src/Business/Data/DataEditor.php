@@ -32,7 +32,7 @@ class DataEditor
             "context" => $this->context,
             "fileType" => $file->getExtension(),
         ]);
-        $this->client->reset($tpl->getSystemContent(), 0.1);
+        $this->client->reset($tpl->getSystemContent(), 0.1, "gpt-4o");
         $this->client->getCache()->clear();
         $this->client->textComplete([
             $file->get_contents(),

@@ -7,22 +7,22 @@ order: 0
 description: "\U0001F4DE\U0001F4AC Kontaktieren Sie uns bei Fragen oder Anregungen
   zu unseren Pimmelbuden! Wir freuen uns auf Ihre Nachricht. \U0001F48C\U0001F442"
 ai_instructions: ""
-_schiller_instructions: ""
+_schiller_instructions: ~
 image: ""
 availLangs:
 - de
 - en
 ---
-## Unsere Therapien
+## Kontakt
 {: layout="use: #sec-card-2col"}
 
 > Für Ihre Augengesundheit
 
 ![](https://cdn.leuffen.de//leu-stock/v2/84/c_gfedcba/AdobeStock_294550992.webp)
 
-Das Auge ist eines der wichtigsten Sinnesorgane, und seine Gesundheit beeinflusst unsere Lebensqualität maßgeblich. Hier informieren wir Sie über die vielfältigen Therapiemöglichkeiten,
-mit denen wir Beschwerden lindern, Sehstärken verbessern und die Augengesundheit fördern. Unser erfahrenes Team nutzt modernste Techniken und Verfahren, um Ihnen eine individuell
-zugeschnittene Behandlung zu garantieren. Ihre Sehkraft liegt uns am Herzen.
+Das Auge ist eines der wichtigsten Sinnesorgane, und seine Gesundheit beeinflusst unsere Lebensqualität maßgeblich. Hier informieren wir Sie über die vielfältigen Kontaktmöglichkeiten,
+mit denen Sie uns erreichen können, um Beschwerden zu schildern, Sehstärken zu besprechen und die Augengesundheit zu fördern. Unser erfahrenes Team steht Ihnen mit Rat und Tat zur Seite, um Ihnen eine individuell
+zugeschnittene Beratung zu garantieren. Ihre Sehkraft liegt uns am Herzen.
 
 
 ---
@@ -101,3 +101,10 @@ Druck, der vom Kammerwasser im Innern des Auges nach außen wirkt. Normalwerte l
 {: layout="use: #cta-base"}
 
 [Unsere Diagnostik](leistungen/diagnostik.de.html)
+
+## Neue Sektion
+{: layout="use: #sec-card-2col"}
+
+> Informationen zur neuen Sektion
+
+Diese neue Sektion bietet zusätzliche Informationen und Ressourcen, um Ihre Augengesundheit zu unterstützen. Hier finden Sie aktuelle Forschungsergebnisse, Tipps zur Augengesundheit und vieles mehr. Unser Ziel ist es, Ihnen umfassende und aktuelle Informationen zur Verfügung zu stellen, damit Sie die bestmöglichen Entscheidungen für Ihre Augengesundheit treffen können.
