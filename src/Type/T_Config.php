@@ -40,7 +40,7 @@ class T_Config
         if ($this->sections_def_file === null)
             return null;
         if (substr($this->sections_def_file, 0, 1) == "/")
-            return $this->sections_def_file;
+            return $this->__configFileLocation ."/". $this->sections_def_file;
 
 
         return $this->__configFileLocation . "/" . $this->template_dir . "/" . $this->sections_def_file;
