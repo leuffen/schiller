@@ -3,6 +3,7 @@
 namespace App\Ctrl;
 
 use App\Business\Website2\Website2CreatorEditor;
+use App\Type\T_Config;
 use Brace\Router\Attributes\BraceRoute;
 use http\Message\Body;
 use Lack\Frontmatter\Repo\FrontmatterRepo;
@@ -17,6 +18,7 @@ class PageListCtrl
         private FrontmatterRepo $templateRepo,
         private LackOpenAiClient $openai,
         private string $context,
+        private T_Config $config
 
     )
     {
@@ -156,9 +158,10 @@ class PageListCtrl
         $pid = $query["pid"];
 
 
+
         $page = $this->frontmatterRepo->selectPid($pid, "de");
 
-        $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai);
+        $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai, $this->config->getSectionDefFile());
         $w2c->adjust($page);
         return ["ok" => true];
     }
@@ -173,7 +176,7 @@ class PageListCtrl
 
         $page = $this->frontmatterRepo->selectPid($pid, "de");
 
-        $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai);
+        $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai, $this->config->getSectionDefFile());
         $w2c->generateMeta($page);
         return ["ok" => true];
     }
@@ -191,7 +194,7 @@ class PageListCtrl
 
         $page = $this->frontmatterRepo->selectPid($pid, $lang);
 
-        $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai);
+        $w2c = new Website2CreatorEditor($this->context, $this->frontmatterRepo, $this->openai, $this->config->getSectionDefFile());
 
         $w2c->modifyPage($page, $instructions);
         return ["ok" => true];

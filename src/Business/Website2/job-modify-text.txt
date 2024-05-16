@@ -18,6 +18,8 @@ Return the full modified markdown content. Do not remove content unless told so.
 Other available pages:
 {{links}}
 
+{{sections_def}}
+
 ---
 
 Modify the input according to instructions below. Do not edit the structure of the input. Correct spelling and punctuation in instructions.

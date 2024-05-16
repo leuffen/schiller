@@ -6,6 +6,7 @@ use App\Business\processors\ImageStorageProcessor;
 use App\Business\processors\PdfStorageProcessor;
 use App\Business\processors\SvgStorageProcessor;
 use App\Business\StorageFacet;
+use App\Business\Template;
 use App\Config\MediaStoreConf;
 use App\Config\MediaStoreSubscriptionInfo;
 use App\Type\T_Config;
@@ -42,7 +43,10 @@ AppLoader::extend(function () {
 
 
     $app->define("config", new DiService(function () {
-        return phore_hydrate_file(CONF_PATH . "/.schiller.yml", T_Config::class);
+        $config = phore_hydrate_file(CONF_PATH . "/.schiller.yml", T_Config::class);
+        /** @var T_Config $config */
+        $config->__setConfigFileLocation(CONF_PATH);
+        return $config;
     }));
 
     $app->define("frontmatterRepo", new DiService(function (T_Config $config) {
@@ -52,6 +56,7 @@ AppLoader::extend(function () {
     $app->define("templateRepo", new DiService(function (T_Config $config) {
         return new FrontmatterRepo(CONF_PATH . "/" . $config->template_dir);
     }));
+
 
 
     $app->define("openai", new DiService(function (T_Config $config) {

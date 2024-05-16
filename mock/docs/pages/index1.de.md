@@ -16,12 +16,12 @@ availLangs:
 ## Kontakt
 {: layout="use: #sec-card-2col"}
 
-> Für Ihre Augengesundheit
+> Für Ihre Pimmelbuden
 
 ![](https://cdn.leuffen.de//leu-stock/v2/84/c_gfedcba/AdobeStock_294550992.webp)
 
-Das Auge ist eines der wichtigsten Sinnesorgane, und seine Gesundheit beeinflusst unsere Lebensqualität maßgeblich. Hier informieren wir Sie über die vielfältigen Kontaktmöglichkeiten,
-mit denen Sie uns erreichen können, um Beschwerden zu schildern, Sehstärken zu besprechen und die Augengesundheit zu fördern. Unser erfahrenes Team steht Ihnen mit Rat und Tat zur Seite, um Ihnen eine individuell
+Die Pimmelbude ist eines der wichtigsten Sinnesorgane, und ihre Gesundheit beeinflusst unsere Lebensqualität maßgeblich. Hier informieren wir Sie über die vielfältigen Kontaktmöglichkeiten,
+mit denen Sie uns erreichen können, um Beschwerden zu schildern, Sehstärken zu besprechen und die Pimmelbudengesundheit zu fördern. Unser erfahrenes Team steht Ihnen mit Rat und Tat zur Seite, um Ihnen eine individuell
 zugeschnittene Beratung zu garantieren. Ihre Sehkraft liegt uns am Herzen.
 
 

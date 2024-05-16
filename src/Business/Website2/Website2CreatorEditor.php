@@ -19,11 +19,23 @@ class Website2CreatorEditor
     public function __construct(
         public string $context,
         public FrontmatterRepo $targetRepo,
-        public LackOpenAiClient $client
+        public LackOpenAiClient $client,
+        public ?string $sectionDefFile = null
     ){
 
     }
 
+
+
+    private function getSectionDef() : string {
+
+        if ( ! $this->sectionDefFile)
+            return "";
+        $ret = '';
+        $data =  phore_file($this->sectionDefFile)->get_json();
+        $ret .= $data["general"]."\n" . json_encode($data["available_sections"], JSON_PRETTY_PRINT);
+        return $ret;
+    }
 
 
     private $modifiedPages = [];
@@ -39,6 +51,8 @@ class Website2CreatorEditor
             "context" => $this->context,
             "title" => $page->header["title"] ?? "undefined",
             "links" => $this->targetRepo->getPageLinksAsMardownLinks($pid->getLang(), true),
+
+            "sections_def" => $this->getSectionDef(),
 
             "ai_instructions" => $page->header["_schiller_instructions"] ?? "Schreibe den Text auf den Context um!"
         ]);
@@ -80,6 +94,7 @@ class Website2CreatorEditor
 
         $tpl->setData([
             "instructions" => $instructions,
+            "sections_def" => $this->getSectionDef(),
             "links" => $this->targetRepo->getPageLinksAsMardownLinks($pid->getLang(), true),
         ]);
         $this->client->reset($tpl->getSystemContent(), 0.05, "gpt-4o");

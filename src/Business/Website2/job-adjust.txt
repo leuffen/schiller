@@ -20,6 +20,8 @@ Context:
 Deeplink-structure: (use these Links to add buttons to the page and do not repeat content from other pages)
 {{links}}
 
+{{sections_def}}
+
 ---
 
 Adjust the input to match the context. Apply changes to the input marked by `@todo`. Do not remove content unless told so. Return matching content as it is.
