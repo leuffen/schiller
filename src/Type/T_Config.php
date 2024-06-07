@@ -21,7 +21,7 @@ class T_Config
     /**
      * if absolute path will search absolute. Otherwise relative to template_dir
      *
-     * @var string
+     * @var string|null
      */
     public ?string $sections_def_file = null;
 
