@@ -23,7 +23,7 @@ class T_Config
      *
      * @var string
      */
-    public string $sections_def_file = "sections.def.json";
+    public ?string $sections_def_file = null;
 
     /**
      * @var string|null
