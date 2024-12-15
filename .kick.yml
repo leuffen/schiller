@@ -1,5 +1,5 @@
 version: 1
-from: "ghcr.io/nfra-project/kickstart-flavor-php:unstable"
+from: "ghcr.io/nfra-project/kickstart-flavor-php:8.3"
 ports: "80:80"
 
 packages: [inotify-tools]
