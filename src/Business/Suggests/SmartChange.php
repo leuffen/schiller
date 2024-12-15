@@ -23,7 +23,7 @@ class SmartChange
             "pages" => $this->targetRepo->getPagePidLinksAsMardownLinks("de"),
             "changes" => $instructions,
         ]);
-        $this->client->reset($tpl->getSystemContent(), 0.1, "gpt-4o");
+        $this->client->reset($tpl->getSystemContent());
 
         //$this->client->getCache()->clear();
         return $this->client->textComplete([
