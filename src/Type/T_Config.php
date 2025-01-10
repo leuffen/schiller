@@ -28,7 +28,7 @@ class T_Config
     /**
      * @var string|null
      */
-    private ?string $__configFileLocation;
+    private ?string $__configFileLocation = null;
 
 
     public function __setConfigFileLocation($path) {
