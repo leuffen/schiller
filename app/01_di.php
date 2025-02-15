@@ -18,6 +18,7 @@ use Brace\Mod\Request\Zend\BraceRequestLaminasModule;
 use Brace\Router\RouterModule;
 use Brace\Router\Type\RouteParams;
 use Lack\Frontmatter\Repo\FrontmatterRepo;
+use Lack\Keystore\KeyStore;
 use Lack\OpenAi\LackOpenAiClient;
 use Lack\OpenAi\Logger\NullLogger;
 use Lack\Subscription\Brace\SubscriptionClientModule;
@@ -60,8 +61,8 @@ AppLoader::extend(function () {
 
 
     $app->define("openai", new DiService(function (T_Config $config) {
-        $keystore = phore_file(CONF_KEYSTORE_FILE)->assertFile()->get_yaml();
-        return new LackOpenAiClient($keystore["open_ai"], new NullLogger());
+        $secret = KeyStore::Get()->getAccessKey("open_ai");
+        return new LackOpenAiClient($secret, new NullLogger());
     }));
 
     $app->define("context", new DiService(function (T_Config $config) {

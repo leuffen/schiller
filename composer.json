@@ -25,7 +25,8 @@
     "lack/frontmatter": "*",
 
 
-    "brace/command": "dev-main"
+    "brace/command": "dev-main",
+    "lack/keystore": "dev-main"
   },
   "require-dev": {
     "phore/tester": "*"
